@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ماكينة TREE لكتابة المحتوى</title>
+    <title>TREE Content Engine | النسخة الاحترافية</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f4f7f6;
+            background-color: #f0f4f8;
             color: #333;
             margin: 0;
             padding: 20px;
@@ -17,67 +17,100 @@
         .container {
             background-color: #fff;
             width: 100%;
-            max-width: 600px;
+            max-width: 650px;
             padding: 30px;
             border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            border-top: 5px solid #2e7d32; /* لون شجرة TREE */
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            border-top: 6px solid #1b5e20;
         }
         h2 {
             text-align: center;
-            color: #2e7d32;
-            margin-bottom: 20px;
+            color: #1b5e20;
+            margin-bottom: 5px;
+        }
+        p.subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 25px;
+            font-size: 14px;
+        }
+        .row {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
         }
         .form-group {
-            margin-bottom: 15px;
+            flex: 1;
         }
         label {
             display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
+            margin-bottom: 6px;
+            font-weight: 600;
+            font-size: 14px;
+            color: #444;
         }
         input, select {
             width: 100%;
             padding: 10px;
-            border: 1px solid #ccc;
+            border: 1px solid #cdd1d5;
             border-radius: 6px;
-            font-size: 16px;
+            font-size: 15px;
             box-sizing: border-box;
+            background-color: #fafafa;
         }
-        button {
+        input:focus, select:focus {
+            border-color: #1b5e20;
+            outline: none;
+            background-color: #fff;
+        }
+        button.generate-btn {
             width: 100%;
-            padding: 12px;
-            background-color: #2e7d32;
+            padding: 14px;
+            background-color: #1b5e20;
             color: white;
             border: none;
             border-radius: 6px;
             font-size: 16px;
             cursor: pointer;
             font-weight: bold;
-            margin-top: 10px;
+            margin-top: 15px;
             transition: 0.3s;
         }
-        button:hover {
-            background-color: #1b5e20;
+        button.generate-btn:hover {
+            background-color: #124015;
         }
         .result-box {
             margin-top: 25px;
             display: none;
+            background-color: #f9fbf9;
+            padding: 15px;
+            border: 1px dashed #1b5e20;
+            border-radius: 8px;
         }
         textarea {
             width: 100%;
-            height: 200px;
-            padding: 10px;
-            border: 1px solid #2e7d32;
+            height: 350px;
+            padding: 12px;
+            border: 1px solid #ccc;
             border-radius: 6px;
-            font-size: 15px;
-            line-height: 1.5;
-            resize: none;
+            font-size: 14px;
+            line-height: 1.6;
+            resize: vertical;
             box-sizing: border-box;
+            background-color: #fff;
         }
         .copy-btn {
+            width: 100%;
+            padding: 10px;
             background-color: #0277bd;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
             margin-top: 10px;
+            transition: 0.3s;
         }
         .copy-btn:hover {
             background-color: #01579b;
@@ -87,63 +120,74 @@
 <body>
 
     <div class="container">
-        <h2>🌳 مولد محتوى منتجات TREE</h2>
+        <h2>🌳 ماكينة TREE الاحترافية</h2>
+        <p class="subtitle">مولّد المحتوى الذكي المدعوم بالـ SEO</p>
         
-        <div class="form-group">
-            <label for="productType">نوع المنتج (مثال: تيشيرت بولو، بنطلون جينز)</label>
-            <input type="text" id="productType" placeholder="اكتب نوع المنتج...">
+        <div class="row">
+            <div class="form-group">
+                <label for="productType">نوع القطعة (مثال: تيشيرت، جاكيت)</label>
+                <input type="text" id="productType" placeholder="النوع...">
+            </div>
+            <div class="form-group">
+                <label for="audience">الفئة المستهدفة</label>
+                <select id="audience">
+                    <option value="رجالي">رجالي</option>
+                    <option value="حريمي">حريمي</option>
+                    <option value="أطفالي ولادي">أطفالي ولادي</option>
+                    <option value="أطفالي بناتي">أطفالي بناتي</option>
+                </select>
+            </div>
         </div>
 
-        <div class="form-group">
-            <label for="material">الخامة (مثال: قطن بيكيه، كتان مريح)</label>
-            <input type="text" id="material" placeholder="اكتب خامة المنتج...">
-        </div>
-
-        <div class="form-group">
-            <label for="color">اللون</label>
-            <input type="text" id="color" placeholder="اكتب لون المنتج...">
+        <div class="row">
+            <div class="form-group">
+                <label for="material">الخامة (مثال: قطن 100%، جينز)</label>
+                <input type="text" id="material" placeholder="الخامة...">
+            </div>
+            <div class="form-group">
+                <label for="color">اللون</label>
+                <input type="text" id="color" placeholder="اللون...">
+            </div>
         </div>
 
         <div class="form-group">
             <label for="platform">المنصة المستهدفة</label>
             <select id="platform">
-                <option value="shopify">شوبيفاي (Shopify) - وصف تفصيلي</option>
-                <option value="jumia">جوميا (Jumia) - SEO و ميزات</option>
-                <option value="noon">نون (Noon) - نقاط سريعة</option>
+                <option value="shopify">شوبيفاي (Shopify) - محتوى احترافي + SEO + Tags</option>
+                <option value="jumia">جوميا (Jumia) - وصف سريع + Highlights</option>
+                <option value="noon">نون (Noon) - نقاط بيعية مباشرة (Bullets)</option>
             </select>
         </div>
 
-        <button onclick="generateContent()">⚙️ إنشاء المحتوى</button>
+        <button class="generate-btn" onclick="generateContent()">⚙️ إنشاء المحتوى الآن</button>
 
         <div class="result-box" id="resultBox">
-            <label>المحتوى الجاهز:</label>
+            <label>المحتوى الجاهز (انسخ كل جزء في مكانه):</label>
             <textarea id="outputText" readonly></textarea>
-            <button class="copy-btn" onclick="copyText()">📋 نسخ المحتوى</button>
+            <button class="copy-btn" onclick="copyText()">📋 نسخ النص بالكامل</button>
         </div>
     </div>
 
     <script>
         function generateContent() {
-            // سحب البيانات من المربعات
-            let type = document.getElementById("productType").value || "[نوع المنتج]";
+            let type = document.getElementById("productType").value || "[نوع القطعة]";
+            let audience = document.getElementById("audience").value;
             let material = document.getElementById("material").value || "[الخامة]";
             let color = document.getElementById("color").value || "[اللون]";
             let platform = document.getElementById("platform").value;
             
             let result = "";
 
-            // توليد المحتوى حسب المنصة
             if (platform === "shopify") {
-                result = `${type} من TREE | أناقة وراحة بلون ${color}\n\nارتقِ بإطلالتك مع ${type} المتميز من كوليكشن TREE الأصلي. مصمم خصيصاً ليمنحك الراحة طوال اليوم بفضل خامة الـ ${material} عالية الجودة.\n\n✨ الميزات:\n- خامة ناعمة ومريحة جداً تناسب الاستخدام اليومي.\n- لون ${color} غني وثابت معالج ضد البهتان.\n- قصة عصرية (Regular Fit) تبرز أناقة الجسم.\n\n📏 تنبيه: برجاء مراجعة جدول المقاسات قبل الطلب.`;
+                result = `=== 📌 1. عنوان المنتج (Title) ===\n${type} ${audience} كاجوال من TREE - لون ${color}\n\n=== 📝 2. وصف المنتج (Description) ===\nارتقِ بمستوى أناقتك مع ${type} الـ ${audience} الجديد من كوليكشن TREE. صُمم خصيصاً ليمنحك إطلالة عصرية لا مثيل لها مع توفير أقصى درجات الراحة طوال اليوم.\n\n✨ أبرز الميزات:\n- 🧵 خامة ممتازة: مصنوع من ${material} عالي الجودة لضمان التهوية والمتانة.\n- 🎨 ألوان ثابتة: لون ${color} زاهي معالج ضد البهتان بعد الغسيل.\n- ✂️ قصة مثالية: تصميم (Regular Fit) يبرز أناقة الجسم ويتيح حرية الحركة.\n\n💡 نصيحة خبير TREE: نسق هذا الـ ${type} مع بنطلون كاجوال وسنيكرز لإطلالة يومية مريحة وخاطفة للأنظار.\n(برجاء مراجعة جدول المقاسات الخاص بنا قبل الطلب لضمان المقاس المثالي).\n\n=== 🔍 3. قسم محركات البحث (Search Engine Listing) ===\n\n🟢 عنوان الصفحة (SEO Title - Max 70 chars):\nتسوق ${type} ${audience} ${color} أونلاين | TREE Egypt\n\n🟢 الوصف التعريفي (Meta Description - Max 320 chars):\nاكتشف أحدث ${type} ${audience} من TREE بخامة ${material} عالية الجودة ولون ${color} مميز. تسوق الآن بأفضل الأسعار واستمتع بتجربة شراء آمنة مع إمكانية الاستبدال والاسترجاع.\n\n=== 🏷️ 4. العلامات (Tags) ===\n${type}, ${audience}, ${color}, ${material}, ملابس ${audience}, كوليكشن TREE, أزياء كاجوال, New Arrival`;
             } 
             else if (platform === "jumia") {
-                result = `العنوان: TREE ${type} كاجوال رجالي - ${material} - ${color}\n\nأبرز الميزات (Highlights):\n- العلامة التجارية: TREE الأصلية\n- الخامة: ${material} عالي الجودة\n- اللون: ${color} ثابت\n- الميزة: تلبيس مريح وعملي\n\nوصف المنتج (Description):\nاحصل على أفضل تجربة تسوق مع ${type} من TREE. مصنوع من ${material} ليناسب الاستخدام اليومي والخروجات. متوفر بلون ${color} الجذاب الذي يسهل تنسيقه مع مختلف إطلالاتك.`;
+                result = `العنوان: TREE ${type} ${audience} كاجوال - ${material} - ${color}\n\nأبرز الميزات (Highlights):\n- العلامة التجارية: TREE\n- الفئة: ملابس ${audience}\n- الخامة: ${material} عالي الجودة\n- اللون: ${color} ثابت لا يبهت\n- التلبيس: مريح وعملي (Regular Fit)\n\nوصف المنتج (Description):\nجدد خزانة ملابسك مع ${type} الأنيق من TREE. مصنوع بعناية من ${material} ليناسب الاستخدام اليومي المكثف. متوفر بلون ${color} الجذاب الذي يسهل تنسيقه مع مختلف إطلالاتك.`;
             } 
             else if (platform === "noon") {
-                result = `العنوان: ${type} كاجوال بأسلوب عصري ${color}\n\nنظرة عامة:\n- مصمم من ${material} ليوفر أقصى درجات الراحة وحرية الحركة.\n- ياقة كلاسيكية وتصميم يناسب أوقات العمل والخروجات اليومية.\n- لون ${color} أنيق يسهل تنسيقه مع مختلف الإطلالات.\n- منتج أصلي 100% من مصانع TREE يضمن لك الجودة والعمر الطويل.`;
+                result = `العنوان: ${type} كاجوال بأسلوب عصري ${audience} - ${color}\n\nنظرة عامة:\n- تصميم مخصص للـ (${audience}) من ${material} ليوفر أقصى درجات الراحة.\n- تصميم كلاسيكي عصري يناسب أوقات العمل والخروجات اليومية.\n- لون ${color} أنيق وسهل التنسيق مع قطعك المفضلة.\n- منتج أصلي 100% من مصانع TREE يضمن لك أعلى جودة وأطول عمر افتراضي.`;
             }
 
-            // عرض النتيجة
             document.getElementById("outputText").value = result;
             document.getElementById("resultBox").style.display = "block";
         }
@@ -151,9 +195,9 @@
         function copyText() {
             let text = document.getElementById("outputText");
             text.select();
-            text.setSelectionRange(0, 99999); /* للموبايل */
+            text.setSelectionRange(0, 99999);
             navigator.clipboard.writeText(text.value);
-            alert("✅ تم نسخ المحتوى بنجاح! تقدر تعمله لصق دلوقتي.");
+            alert("✅ تم نسخ المحتوى بنجاح! روح على لوحة التحكم واعمل لصق.");
         }
     </script>
 </body>
