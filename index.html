@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ماكينة TREE لكتابة المحتوى V2</title>
+    <title>TREE Content Generator V2</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -17,7 +17,7 @@
         .container {
             background-color: #fff;
             width: 100%;
-            max-width: 650px;
+            max-width: 600px;
             padding: 30px;
             border-radius: 12px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
@@ -28,29 +28,20 @@
             color: #2e7d32;
             margin-bottom: 20px;
         }
-        .form-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-        }
         .form-group {
-            margin-bottom: 10px;
-        }
-        .form-group.full-width {
-            grid-column: span 2;
+            margin-bottom: 15px;
         }
         label {
             display: block;
             margin-bottom: 5px;
             font-weight: bold;
-            font-size: 14px;
         }
         input, select {
             width: 100%;
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 6px;
-            font-size: 14px;
+            font-size: 16px;
             box-sizing: border-box;
         }
         button {
@@ -63,7 +54,7 @@
             font-size: 16px;
             cursor: pointer;
             font-weight: bold;
-            margin-top: 15px;
+            margin-top: 10px;
             transition: 0.3s;
         }
         button:hover {
@@ -80,7 +71,7 @@
             border: 1px solid #2e7d32;
             border-radius: 6px;
             font-size: 15px;
-            line-height: 1.6;
+            line-height: 1.5;
             resize: none;
             box-sizing: border-box;
         }
@@ -96,89 +87,92 @@
 <body>
 
     <div class="container">
-        <h2>🌳 مولد محتوى منتجات TREE (مُحدث)</h2>
+        <h2>🌳 ماكينة محتوى TREE (عربي/إنجليزي)</h2>
         
-        <div class="form-grid">
-            <div class="form-group">
-                <label>نوع المنتج</label>
-                <input type="text" id="productType" placeholder="تيشيرت بولو، بنطلون...">
-            </div>
-            <div class="form-group">
-                <label>الخامة (Fabric)</label>
-                <input type="text" id="material" placeholder="قطن 100%، كتان...">
-            </div>
-            <div class="form-group">
-                <label>اللون (Color)</label>
-                <input type="text" id="color" placeholder="أخضر، أسود...">
-            </div>
-            <div class="form-group">
-                <label>المقاسات المتاحة (Sizes)</label>
-                <input type="text" id="sizes" placeholder="S, M, L, XL, 2XL, 3XL">
-            </div>
-            <div class="form-group">
-                <label>الفئة / الجنس (Gender)</label>
-                <select id="gender">
-                    <option value="رجالي">رجالي (Male)</option>
-                    <option value="شبابي">شبابي (Youth)</option>
-                    <option value="أولادي">أولادي (Boys)</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label>شكل الياقة (Neckline)</label>
-                <select id="neckline">
-                    <option value="دائرية (Round)">دائرية (Round)</option>
-                    <option value="بولو (Polo)">بولو (Polo)</option>
-                    <option value="V-Neck">على شكل V</option>
-                </select>
-            </div>
-            <div class="form-group full-width">
-                <label>طول الكم (Sleeve Length)</label>
-                <select id="sleeve">
-                    <option value="قصيرة">أكمام قصيرة (Short)</option>
-                    <option value="طويلة">أكمام طويلة (Long)</option>
-                    <option value="بدون أكمام">بدون أكمام (Sleeveless)</option>
-                </select>
-            </div>
-            <div class="form-group full-width">
-                <label>المنصة المستهدفة</label>
-                <select id="platform">
-                    <option value="shopify">شوبيفاي (Shopify) - وصف تفصيلي</option>
-                    <option value="jumia">جوميا (Jumia) - SEO و ميزات</option>
-                    <option value="noon">نون (Noon) - نقاط سريعة</option>
-                </select>
-            </div>
+        <div class="form-group">
+            <label for="productType">نوع المنتج / Product Type (e.g., T-Shirt, Jeans)</label>
+            <input type="text" id="productType" placeholder="اكتب نوع المنتج...">
         </div>
 
-        <button onclick="generateContent()">⚙️ إنشاء المحتوى</button>
+        <div class="form-group">
+            <label for="material">الخامة / Material (e.g., 100% Cotton, Denim)</label>
+            <input type="text" id="material" placeholder="اكتب خامة المنتج...">
+        </div>
+
+        <div class="form-group">
+            <label for="color">اللون / Color</label>
+            <input type="text" id="color" placeholder="اكتب لون المنتج...">
+        </div>
+
+        <div class="form-group">
+            <label for="platform">المنصة المستهدفة / Platform</label>
+            <select id="platform">
+                <option value="shopify">شوبيفاي (Shopify) - وصف تفصيلي</option>
+                <option value="jumia">جوميا (Jumia) - SEO و ميزات</option>
+                <option value="noon">نون (Noon) - نقاط سريعة</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="language">لغة المحتوى / Language</label>
+            <select id="language">
+                <option value="ar">العربية (Arabic)</option>
+                <option value="en">الإنجليزية (English)</option>
+            </select>
+        </div>
+
+        <button onclick="generateContent()">⚙️ إنشاء المحتوى / Generate</button>
 
         <div class="result-box" id="resultBox">
-            <label>المحتوى الجاهز للنسخ:</label>
+            <label>المحتوى الجاهز / Generated Content:</label>
             <textarea id="outputText" readonly></textarea>
-            <button class="copy-btn" onclick="copyText()">📋 نسخ المحتوى</button>
+            <button class="copy-btn" onclick="copyText()">📋 نسخ المحتوى / Copy</button>
         </div>
     </div>
 
     <script>
         function generateContent() {
-            let type = document.getElementById("productType").value || "[نوع المنتج]";
-            let material = document.getElementById("material").value || "[الخامة]";
-            let color = document.getElementById("color").value || "[اللون]";
-            let sizes = document.getElementById("sizes").value || "[المقاسات]";
-            let gender = document.getElementById("gender").value;
-            let neckline = document.getElementById("neckline").value;
-            let sleeve = document.getElementById("sleeve").value;
+            let type = document.getElementById("productType").value || "[المنتج/Product]";
+            let material = document.getElementById("material").value || "[الخامة/Material]";
+            let color = document.getElementById("color").value || "[اللون/Color]";
             let platform = document.getElementById("platform").value;
+            let lang = document.getElementById("language").value;
             
             let result = "";
 
-            if (platform === "shopify") {
-                result = `${type} ${gender} من TREE | أناقة وراحة بلون ${color}\n\nارتقِ بإطلالتك مع ${type} الـ ${gender} المتميز من كوليكشن TREE الأصلي. مصمم خصيصاً ليمنحك الراحة طوال اليوم بفضل خامة الـ ${material} عالية الجودة.\n\n✨ الميزات التفصيلية:\n- خامة ناعمة ومريحة (${material}).\n- تصميم عملي بياقة ${neckline} وأكمام ${sleeve} لضمان حرية الحركة.\n- لون ${color} غني وثابت معالج ضد البهتان.\n- تلبيس مثالي (Regular Fit) يناسب جميع الأجسام.\n- متوفر بالمقاسات التالية: ${sizes}.\n\n📏 تنبيه: برجاء مراجعة جدول المقاسات قبل الطلب لضمان المقاس المثالي.`;
-            } 
-            else if (platform === "jumia") {
-                result = `العنوان: TREE ${type} ${gender} - ياقة ${neckline} - ${material} - ${color}\n\nأبرز الميزات (Highlights):\n- العلامة التجارية: TREE\n- الفئة المستهدفة: ${gender}\n- الخامة: ${material} (أكمام ${sleeve})\n- اللون: ${color}\n- المقاسات المتاحة: ${sizes}\n\nوصف المنتج (Description):\nاحصل على أفضل تجربة تسوق مع ${type} من TREE. منتج مصمم بعناية بياقة ${neckline} وأكمام ${sleeve} ليناسب الاستخدام اليومي. مصنوع من ${material} ومتوفر بلون ${color} الجذاب.`;
-            } 
-            else if (platform === "noon") {
-                result = `العنوان: ${type} ${gender} بأكمام ${sleeve} ولون ${color}\n\nنظرة عامة:\n- مصمم من ${material} ليوفر أقصى درجات الراحة وحرية الحركة.\n- يتميز بياقة ${neckline} وتصميم يناسب أوقات العمل والخروجات اليومية.\n- لون ${color} أنيق يسهل تنسيقه مع مختلف الإطلالات.\n- متوفر بمجموعة مقاسات تناسب الجميع: (${sizes}).\n- منتج أصلي 100% من مصانع TREE.`;
+            if (lang === "ar") {
+                if (platform === "shopify") {
+                    result = `${type} من TREE | أناقة وراحة بلون ${color}\n\nارتقِ بإطلالتك مع ${type} المتميز من كوليكشن TREE الأصلي. مصمم خصيصاً ليمنحك الراحة طوال اليوم بفضل خامة الـ ${material} عالية الجودة.\n\n✨ الميزات:\n- خامة ناعمة ومريحة جداً تناسب الاستخدام اليومي.\n- لون ${color} غني وثابت معالج ضد البهتان.\n- قصة عصرية (Regular Fit) تبرز أناقة الجسم.\n\n📏 تنبيه: برجاء مراجعة جدول المقاسات قبل الطلب.`;
+                } 
+                else if (platform === "jumia") {
+                    result = `العنوان: TREE ${type} كاجوال رجالي - ${material} - ${color}\n\nأبرز الميزات (Highlights):\n- العلامة التجارية: TREE الأصلية\n- الخامة: ${material} عالي الجودة\n- اللون: ${color} ثابت\n- الميزة: تلبيس مريح وعملي\n\nوصف المنتج (Description):\nاحصل على أفضل تجربة تسوق مع ${type} من TREE. مصنوع من ${material} ليناسب الاستخدام اليومي والخروجات. متوفر بلون ${color} الجذاب الذي يسهل تنسيقه مع مختلف إطلالاتك.`;
+                } 
+                else if (platform === "noon") {
+                    result = `العنوان: ${type} كاجوال بأسلوب عصري ${color}\n\nنظرة عامة:\n- مصمم من ${material} ليوفر أقصى درجات الراحة وحرية الحركة.\n- ياقة كلاسيكية وتصميم يناسب أوقات العمل والخروجات اليومية.\n- لون ${color} أنيق يسهل تنسيقه مع مختلف الإطلالات.\n- منتج أصلي 100% من مصانع TREE يضمن لك الجودة والعمر الطويل.`;
+                }
+            } else {
+                // English Templates
+                // Ensure inputs output correctly if user typed them in Arabic but requested English
+                document.getElementById("outputText").dir = "ltr"; 
+                
+                if (platform === "shopify") {
+                    result = `${type} by TREE | Elegance & Comfort in ${color}\n\nElevate your everyday style with the premium ${type} from the authentic TREE collection. Specifically designed to provide all-day comfort thanks to the high-quality ${material}.\n\n✨ Key Features:\n- Ultra-soft and comfortable for daily wear.\n- Rich and fade-resistant ${color} color.\n- Modern Regular Fit that perfectly highlights your style.\n\n📏 Note: Please refer to our size guide before placing your order.`;
+                } 
+                else if (platform === "jumia") {
+                    result = `Title: TREE Men's Casual ${type} - ${material} - ${color}\n\nHighlights:\n- Brand: Authentic TREE\n- Material: Premium ${material}\n- Color: Solid ${color}\n- Fit: Comfortable Regular Fit\n\nDescription:\nGet the best shopping experience with this ${type} from TREE. Made of high-quality ${material} suitable for daily use and casual outings. Available in an attractive ${color} that is easy to mix and match with your wardrobe.`;
+                } 
+                else if (platform === "noon") {
+                    result = `Title: Stylish Casual ${color} ${type} for Men\n\nOverview:\n- Crafted from premium ${material} to provide maximum comfort and freedom of movement.\n- Classic design suitable for work, weekends, and everyday outings.\n- Elegant ${color} color that pairs seamlessly with different outfits.\n- 100% authentic product from TREE factories ensuring top quality and durability.`;
+                }
+            }
+
+            // Adjust text direction based on language
+            if(lang === "en") {
+                document.getElementById("outputText").style.textAlign = "left";
+                document.getElementById("outputText").dir = "ltr";
+            } else {
+                document.getElementById("outputText").style.textAlign = "right";
+                document.getElementById("outputText").dir = "rtl";
             }
 
             document.getElementById("outputText").value = result;
@@ -190,8 +184,14 @@
             text.select();
             text.setSelectionRange(0, 99999);
             navigator.clipboard.writeText(text.value);
-            alert("✅ تم نسخ المحتوى بنجاح! تقدر تعمله لصق في الموقع دلوقتي.");
+            
+            let lang = document.getElementById("language").value;
+            if(lang === "ar"){
+                alert("✅ تم نسخ المحتوى بنجاح!");
+            } else {
+                alert("✅ Content copied successfully!");
+            }
         }
     </script>
 </body>
-</html> 
+</html>
