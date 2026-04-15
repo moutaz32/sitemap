@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TREE Content Generator V2</title>
+    <title>TREE WhatsApp Assistant</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f4f7f6;
+            background-color: #f0f4f8;
             color: #333;
             margin: 0;
             padding: 20px;
@@ -20,13 +20,19 @@
             max-width: 600px;
             padding: 30px;
             border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            border-top: 5px solid #2e7d32;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            border-top: 5px solid #27ae60;
         }
         h2 {
             text-align: center;
-            color: #2e7d32;
-            margin-bottom: 20px;
+            color: #27ae60;
+            margin-bottom: 5px;
+        }
+        p.subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            margin-bottom: 25px;
+            font-size: 14px;
         }
         .form-group {
             margin-bottom: 15px;
@@ -35,148 +41,157 @@
             display: block;
             margin-bottom: 5px;
             font-weight: bold;
+            color: #2c3e50;
         }
         input, select {
             width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            font-size: 16px;
-            box-sizing: border-box;
-        }
-        button {
-            width: 100%;
             padding: 12px;
-            background-color: #2e7d32;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 15px;
+            box-sizing: border-box;
+            transition: 0.3s;
+        }
+        input:focus, select:focus {
+            border-color: #27ae60;
+            outline: none;
+        }
+        .row {
+            display: flex;
+            gap: 10px;
+        }
+        .row .form-group {
+            flex: 1;
+        }
+        button.generate-btn {
+            width: 100%;
+            padding: 14px;
+            background-color: #27ae60;
             color: white;
             border: none;
-            border-radius: 6px;
+            border-radius: 8px;
             font-size: 16px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 15px;
+            transition: 0.3s;
+        }
+        button.generate-btn:hover {
+            background-color: #219653;
+        }
+        .result-box {
+            margin-top: 25px;
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+        textarea {
+            width: 100%;
+            height: 250px;
+            padding: 15px;
+            border: 2px solid #27ae60;
+            border-radius: 8px;
+            font-size: 15px;
+            line-height: 1.6;
+            resize: none;
+            box-sizing: border-box;
+            background-color: #f9fbf9;
+        }
+        button.copy-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: #2980b9;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
             cursor: pointer;
             font-weight: bold;
             margin-top: 10px;
             transition: 0.3s;
         }
-        button:hover {
-            background-color: #1b5e20;
+        button.copy-btn:hover {
+            background-color: #2471a3;
         }
-        .result-box {
-            margin-top: 25px;
-            display: none;
-        }
-        textarea {
-            width: 100%;
-            height: 250px;
-            padding: 10px;
-            border: 1px solid #2e7d32;
-            border-radius: 6px;
-            font-size: 15px;
-            line-height: 1.5;
-            resize: none;
-            box-sizing: border-box;
-        }
-        .copy-btn {
-            background-color: #0277bd;
-            margin-top: 10px;
-        }
-        .copy-btn:hover {
-            background-color: #01579b;
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <h2>🌳 ماكينة محتوى TREE (عربي/إنجليزي)</h2>
+        <h2>🌳 مساعد TREE لخدمة العملاء</h2>
+        <p class="subtitle">أداة توليد رسائل الواتساب السريعة</p>
         
-        <div class="form-group">
-            <label for="productType">نوع المنتج / Product Type (e.g., T-Shirt, Jeans)</label>
-            <input type="text" id="productType" placeholder="اكتب نوع المنتج...">
+        <div class="row">
+            <div class="form-group">
+                <label for="customerName">اسم العميل (اختياري)</label>
+                <input type="text" id="customerName" placeholder="مثال: أحمد...">
+            </div>
+            <div class="form-group">
+                <label for="orderNumber">رقم الأوردر (اختياري)</label>
+                <input type="text" id="orderNumber" placeholder="مثال: 1054...">
+            </div>
         </div>
 
-        <div class="form-group">
-            <label for="material">الخامة / Material (e.g., 100% Cotton, Denim)</label>
-            <input type="text" id="material" placeholder="اكتب خامة المنتج...">
+        <div class="row">
+            <div class="form-group">
+                <label for="totalAmount">المبلغ المطلوب (للتأكيد)</label>
+                <input type="number" id="totalAmount" placeholder="مثال: 850">
+            </div>
+            <div class="form-group">
+                <label for="scenario">نوع الرسالة</label>
+                <select id="scenario">
+                    <option value="conf1">تأكيد 1 (طلب التأكيد)</option>
+                    <option value="conf2">تأكيد 2 (الشحن وعدم المعاينة)</option>
+                    <option value="exchange">استبدال واسترجاع (شامل)</option>
+                    <option value="followup">متابعة العميل (لا يرد)</option>
+                </select>
+            </div>
         </div>
 
-        <div class="form-group">
-            <label for="color">اللون / Color</label>
-            <input type="text" id="color" placeholder="اكتب لون المنتج...">
-        </div>
-
-        <div class="form-group">
-            <label for="platform">المنصة المستهدفة / Platform</label>
-            <select id="platform">
-                <option value="shopify">شوبيفاي (Shopify) - وصف تفصيلي</option>
-                <option value="jumia">جوميا (Jumia) - SEO و ميزات</option>
-                <option value="noon">نون (Noon) - نقاط سريعة</option>
-            </select>
-        </div>
-
-        <div class="form-group">
-            <label for="language">لغة المحتوى / Language</label>
-            <select id="language">
-                <option value="ar">العربية (Arabic)</option>
-                <option value="en">الإنجليزية (English)</option>
-            </select>
-        </div>
-
-        <button onclick="generateContent()">⚙️ إنشاء المحتوى / Generate</button>
+        <button class="generate-btn" onclick="generateMessage()">⚙️ إنشاء الرسالة</button>
 
         <div class="result-box" id="resultBox">
-            <label>المحتوى الجاهز / Generated Content:</label>
             <textarea id="outputText" readonly></textarea>
-            <button class="copy-btn" onclick="copyText()">📋 نسخ المحتوى / Copy</button>
+            <button class="copy-btn" id="copyBtn" onclick="copyText()">📋 نسخ الرسالة للواتساب</button>
         </div>
     </div>
 
     <script>
-        function generateContent() {
-            let type = document.getElementById("productType").value || "[المنتج/Product]";
-            let material = document.getElementById("material").value || "[الخامة/Material]";
-            let color = document.getElementById("color").value || "[اللون/Color]";
-            let platform = document.getElementById("platform").value;
-            let lang = document.getElementById("language").value;
+        function generateMessage() {
+            let nameInput = document.getElementById("customerName").value.trim();
+            let name = nameInput !== "" ? nameInput : "يا فندم";
+            let order = document.getElementById("orderNumber").value.trim();
+            let amount = document.getElementById("totalAmount").value.trim();
+            let scenario = document.getElementById("scenario").value;
+            
+            let orderText = order !== "" ? ` رقم #${order}` : "";
+            let amountText = amount !== "" ? amount : "[المبلغ]";
             
             let result = "";
 
-            if (lang === "ar") {
-                if (platform === "shopify") {
-                    result = `${type} من TREE | أناقة وراحة بلون ${color}\n\nارتقِ بإطلالتك مع ${type} المتميز من كوليكشن TREE الأصلي. مصمم خصيصاً ليمنحك الراحة طوال اليوم بفضل خامة الـ ${material} عالية الجودة.\n\n✨ الميزات:\n- خامة ناعمة ومريحة جداً تناسب الاستخدام اليومي.\n- لون ${color} غني وثابت معالج ضد البهتان.\n- قصة عصرية (Regular Fit) تبرز أناقة الجسم.\n\n📏 تنبيه: برجاء مراجعة جدول المقاسات قبل الطلب.`;
-                } 
-                else if (platform === "jumia") {
-                    result = `العنوان: TREE ${type} كاجوال رجالي - ${material} - ${color}\n\nأبرز الميزات (Highlights):\n- العلامة التجارية: TREE الأصلية\n- الخامة: ${material} عالي الجودة\n- اللون: ${color} ثابت\n- الميزة: تلبيس مريح وعملي\n\nوصف المنتج (Description):\nاحصل على أفضل تجربة تسوق مع ${type} من TREE. مصنوع من ${material} ليناسب الاستخدام اليومي والخروجات. متوفر بلون ${color} الجذاب الذي يسهل تنسيقه مع مختلف إطلالاتك.`;
-                } 
-                else if (platform === "noon") {
-                    result = `العنوان: ${type} كاجوال بأسلوب عصري ${color}\n\nنظرة عامة:\n- مصمم من ${material} ليوفر أقصى درجات الراحة وحرية الحركة.\n- ياقة كلاسيكية وتصميم يناسب أوقات العمل والخروجات اليومية.\n- لون ${color} أنيق يسهل تنسيقه مع مختلف الإطلالات.\n- منتج أصلي 100% من مصانع TREE يضمن لك الجودة والعمر الطويل.`;
-                }
-            } else {
-                // English Templates
-                // Ensure inputs output correctly if user typed them in Arabic but requested English
-                document.getElementById("outputText").dir = "ltr"; 
-                
-                if (platform === "shopify") {
-                    result = `${type} by TREE | Elegance & Comfort in ${color}\n\nElevate your everyday style with the premium ${type} from the authentic TREE collection. Specifically designed to provide all-day comfort thanks to the high-quality ${material}.\n\n✨ Key Features:\n- Ultra-soft and comfortable for daily wear.\n- Rich and fade-resistant ${color} color.\n- Modern Regular Fit that perfectly highlights your style.\n\n📏 Note: Please refer to our size guide before placing your order.`;
-                } 
-                else if (platform === "jumia") {
-                    result = `Title: TREE Men's Casual ${type} - ${material} - ${color}\n\nHighlights:\n- Brand: Authentic TREE\n- Material: Premium ${material}\n- Color: Solid ${color}\n- Fit: Comfortable Regular Fit\n\nDescription:\nGet the best shopping experience with this ${type} from TREE. Made of high-quality ${material} suitable for daily use and casual outings. Available in an attractive ${color} that is easy to mix and match with your wardrobe.`;
-                } 
-                else if (platform === "noon") {
-                    result = `Title: Stylish Casual ${color} ${type} for Men\n\nOverview:\n- Crafted from premium ${material} to provide maximum comfort and freedom of movement.\n- Classic design suitable for work, weekends, and everyday outings.\n- Elegant ${color} color that pairs seamlessly with different outfits.\n- 100% authentic product from TREE factories ensuring top quality and durability.`;
-                }
+            if (scenario === "conf1") {
+                result = `أهلاً بك ${name} في TREE! 🌳\nسعداء باختيارك لينا.. طلبك${orderText} وصلنا وبنراجعه حالياً عشان نبدأ التجهيز.\n\nعشان نأكد الأوردر وتخرج الشحنة لشركة الشحن في أسرع وقت، برجاء الرد بكلمة "تأكيد".\n\n(ولو حابب تعدل المقاس أو تضيف أي حاجة للأوردر إحنا موجودين للمساعدة).`;
+            } 
+            else if (scenario === "conf2") {
+                result = `تم التأكيد بنجاح ${name}! 🥳 طلبك${orderText} دلوقتي قيد التجهيز.\n\n🚚 موعد التسليم: الشحنة هتوصلك خلال (2 إلى 4 أيام عمل)، ومندوب الشحن هيتواصل معك قبل التسليم.\n\n📌 تنبيه هام للاستلام:\nلضمان وصول المنتج بحالته الأصلية وبأعلى جودة، (غير متاح فتح الشحنة أو المعاينة مع المندوب وقت الاستلام) طبقاً لسياسة التعاقد مع شركة الشحن.\n\n💡 بس حقك محفوظ 100%:\nلو في أي مشكلة، الاستبدال والاسترجاع متاح بكل سهولة خلال 14 يوم من خلال:\n1️⃣ تشرفنا في أقرب فرع ليك وتبدل أو ترجع مجاناً.\n2️⃣ أو نبعتلك المندوب مرة تانية لحد باب البيت (بإضافة مصاريف شحن جديدة).\n\n💰 الإجمالي المطلوب عند الاستلام: ${amountText} جنيه.\n\nنتمنى لك تجربة تسوق مميزة مع كوليكشن TREE! ✨`;
+            } 
+            else if (scenario === "exchange") {
+                result = `أهلاً بك ${name} في TREE! 🌳\nولا يهمك خالص، حقك محفوظ 100% في الاستبدال أو الاسترجاع خلال 14 يوم من الاستلام.\n\n🔄 متاح لحضرتك الاستبدال بطريقتين:\n\n1️⃣ عن طريق الفروع (مجاناً):\nتشرفنا في أقرب فرع ليك من فروعنا الـ 34 وتبدل أو ترجع القطعة مجاناً بدون أي مصاريف إضافية.\n\n2️⃣ عن طريق الموقع (شحن للمنزل):\nلو حابب المندوب يجيلك لحد البيت، الخطوات بسيطة:\n- ادخل على الموقع واعمل (أوردر جديد) بالمقاس أو المنتج اللي محتاجه.\n- ابعتلنا هنا في رسالة (رقم الأوردر الجديد).\n\nالمندوب هيجيلك يسلمك الجديد ويستلم القديم في نفس الوقت (يتم فقط إضافة مصاريف شحن لعملية الاستبدال).\n\nتحب حضرتك تشرفنا في الفرع ولا نبعتلك المندوب؟ ✨`;
             }
-
-            // Adjust text direction based on language
-            if(lang === "en") {
-                document.getElementById("outputText").style.textAlign = "left";
-                document.getElementById("outputText").dir = "ltr";
-            } else {
-                document.getElementById("outputText").style.textAlign = "right";
-                document.getElementById("outputText").dir = "rtl";
+            else if (scenario === "followup") {
+                result = `مساء الخير ${name}،\nحاولنا نتواصل مع حضرتك لتأكيد طلبك من TREE ومفيش رد.\n\nالأوردر جاهز ومستنيين تأكيدك عشان نخرجه لشركة الشحن في أقرب وقت.\nنأكد لحضرتك الشحن ولا نلغي الطلب مؤقتاً؟`;
             }
 
             document.getElementById("outputText").value = result;
             document.getElementById("resultBox").style.display = "block";
+            
+            // Reset button text
+            let btn = document.getElementById("copyBtn");
+            btn.innerHTML = "📋 نسخ الرسالة للواتساب";
+            btn.style.backgroundColor = "#2980b9";
         }
 
         function copyText() {
@@ -185,12 +200,14 @@
             text.setSelectionRange(0, 99999);
             navigator.clipboard.writeText(text.value);
             
-            let lang = document.getElementById("language").value;
-            if(lang === "ar"){
-                alert("✅ تم نسخ المحتوى بنجاح!");
-            } else {
-                alert("✅ Content copied successfully!");
-            }
+            let btn = document.getElementById("copyBtn");
+            btn.innerHTML = "✅ تم النسخ بنجاح!";
+            btn.style.backgroundColor = "#27ae60";
+            
+            setTimeout(() => {
+                btn.innerHTML = "📋 نسخ الرسالة للواتساب";
+                btn.style.backgroundColor = "#2980b9";
+            }, 2000);
         }
     </script>
 </body>
