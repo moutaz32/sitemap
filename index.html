@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TREE Content Engine | النسخة الاحترافية</title>
+    <title>ماكينة TREE لكتابة المحتوى V2</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f0f4f8;
+            background-color: #f4f7f6;
             color: #333;
             margin: 0;
             padding: 20px;
@@ -20,53 +20,43 @@
             max-width: 650px;
             padding: 30px;
             border-radius: 12px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-            border-top: 6px solid #1b5e20;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-top: 5px solid #2e7d32;
         }
         h2 {
             text-align: center;
-            color: #1b5e20;
-            margin-bottom: 5px;
+            color: #2e7d32;
+            margin-bottom: 20px;
         }
-        p.subtitle {
-            text-align: center;
-            color: #666;
-            margin-bottom: 25px;
-            font-size: 14px;
-        }
-        .row {
-            display: flex;
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
             gap: 15px;
-            margin-bottom: 15px;
         }
         .form-group {
-            flex: 1;
+            margin-bottom: 10px;
+        }
+        .form-group.full-width {
+            grid-column: span 2;
         }
         label {
             display: block;
-            margin-bottom: 6px;
-            font-weight: 600;
+            margin-bottom: 5px;
+            font-weight: bold;
             font-size: 14px;
-            color: #444;
         }
         input, select {
             width: 100%;
             padding: 10px;
-            border: 1px solid #cdd1d5;
+            border: 1px solid #ccc;
             border-radius: 6px;
-            font-size: 15px;
+            font-size: 14px;
             box-sizing: border-box;
-            background-color: #fafafa;
         }
-        input:focus, select:focus {
-            border-color: #1b5e20;
-            outline: none;
-            background-color: #fff;
-        }
-        button.generate-btn {
+        button {
             width: 100%;
-            padding: 14px;
-            background-color: #1b5e20;
+            padding: 12px;
+            background-color: #2e7d32;
             color: white;
             border: none;
             border-radius: 6px;
@@ -76,41 +66,27 @@
             margin-top: 15px;
             transition: 0.3s;
         }
-        button.generate-btn:hover {
-            background-color: #124015;
+        button:hover {
+            background-color: #1b5e20;
         }
         .result-box {
             margin-top: 25px;
             display: none;
-            background-color: #f9fbf9;
-            padding: 15px;
-            border: 1px dashed #1b5e20;
-            border-radius: 8px;
         }
         textarea {
             width: 100%;
-            height: 350px;
-            padding: 12px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            font-size: 14px;
-            line-height: 1.6;
-            resize: vertical;
-            box-sizing: border-box;
-            background-color: #fff;
-        }
-        .copy-btn {
-            width: 100%;
+            height: 250px;
             padding: 10px;
-            background-color: #0277bd;
-            color: white;
-            border: none;
+            border: 1px solid #2e7d32;
             border-radius: 6px;
             font-size: 15px;
-            font-weight: bold;
-            cursor: pointer;
+            line-height: 1.6;
+            resize: none;
+            box-sizing: border-box;
+        }
+        .copy-btn {
+            background-color: #0277bd;
             margin-top: 10px;
-            transition: 0.3s;
         }
         .copy-btn:hover {
             background-color: #01579b;
@@ -120,72 +96,89 @@
 <body>
 
     <div class="container">
-        <h2>🌳 ماكينة TREE الاحترافية</h2>
-        <p class="subtitle">مولّد المحتوى الذكي المدعوم بالـ SEO</p>
+        <h2>🌳 مولد محتوى منتجات TREE (مُحدث)</h2>
         
-        <div class="row">
+        <div class="form-grid">
             <div class="form-group">
-                <label for="productType">نوع القطعة (مثال: تيشيرت، جاكيت)</label>
-                <input type="text" id="productType" placeholder="النوع...">
+                <label>نوع المنتج</label>
+                <input type="text" id="productType" placeholder="تيشيرت بولو، بنطلون...">
             </div>
             <div class="form-group">
-                <label for="audience">الفئة المستهدفة</label>
-                <select id="audience">
-                    <option value="رجالي">رجالي</option>
-                    <option value="حريمي">حريمي</option>
-                    <option value="أطفالي ولادي">أطفالي ولادي</option>
-                    <option value="أطفالي بناتي">أطفالي بناتي</option>
+                <label>الخامة (Fabric)</label>
+                <input type="text" id="material" placeholder="قطن 100%، كتان...">
+            </div>
+            <div class="form-group">
+                <label>اللون (Color)</label>
+                <input type="text" id="color" placeholder="أخضر، أسود...">
+            </div>
+            <div class="form-group">
+                <label>المقاسات المتاحة (Sizes)</label>
+                <input type="text" id="sizes" placeholder="S, M, L, XL, 2XL, 3XL">
+            </div>
+            <div class="form-group">
+                <label>الفئة / الجنس (Gender)</label>
+                <select id="gender">
+                    <option value="رجالي">رجالي (Male)</option>
+                    <option value="شبابي">شبابي (Youth)</option>
+                    <option value="أولادي">أولادي (Boys)</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>شكل الياقة (Neckline)</label>
+                <select id="neckline">
+                    <option value="دائرية (Round)">دائرية (Round)</option>
+                    <option value="بولو (Polo)">بولو (Polo)</option>
+                    <option value="V-Neck">على شكل V</option>
+                </select>
+            </div>
+            <div class="form-group full-width">
+                <label>طول الكم (Sleeve Length)</label>
+                <select id="sleeve">
+                    <option value="قصيرة">أكمام قصيرة (Short)</option>
+                    <option value="طويلة">أكمام طويلة (Long)</option>
+                    <option value="بدون أكمام">بدون أكمام (Sleeveless)</option>
+                </select>
+            </div>
+            <div class="form-group full-width">
+                <label>المنصة المستهدفة</label>
+                <select id="platform">
+                    <option value="shopify">شوبيفاي (Shopify) - وصف تفصيلي</option>
+                    <option value="jumia">جوميا (Jumia) - SEO و ميزات</option>
+                    <option value="noon">نون (Noon) - نقاط سريعة</option>
                 </select>
             </div>
         </div>
 
-        <div class="row">
-            <div class="form-group">
-                <label for="material">الخامة (مثال: قطن 100%، جينز)</label>
-                <input type="text" id="material" placeholder="الخامة...">
-            </div>
-            <div class="form-group">
-                <label for="color">اللون</label>
-                <input type="text" id="color" placeholder="اللون...">
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label for="platform">المنصة المستهدفة</label>
-            <select id="platform">
-                <option value="shopify">شوبيفاي (Shopify) - محتوى احترافي + SEO + Tags</option>
-                <option value="jumia">جوميا (Jumia) - وصف سريع + Highlights</option>
-                <option value="noon">نون (Noon) - نقاط بيعية مباشرة (Bullets)</option>
-            </select>
-        </div>
-
-        <button class="generate-btn" onclick="generateContent()">⚙️ إنشاء المحتوى الآن</button>
+        <button onclick="generateContent()">⚙️ إنشاء المحتوى</button>
 
         <div class="result-box" id="resultBox">
-            <label>المحتوى الجاهز (انسخ كل جزء في مكانه):</label>
+            <label>المحتوى الجاهز للنسخ:</label>
             <textarea id="outputText" readonly></textarea>
-            <button class="copy-btn" onclick="copyText()">📋 نسخ النص بالكامل</button>
+            <button class="copy-btn" onclick="copyText()">📋 نسخ المحتوى</button>
         </div>
     </div>
 
     <script>
         function generateContent() {
-            let type = document.getElementById("productType").value || "[نوع القطعة]";
-            let audience = document.getElementById("audience").value;
+            let type = document.getElementById("productType").value || "[نوع المنتج]";
             let material = document.getElementById("material").value || "[الخامة]";
             let color = document.getElementById("color").value || "[اللون]";
+            let sizes = document.getElementById("sizes").value || "[المقاسات]";
+            let gender = document.getElementById("gender").value;
+            let neckline = document.getElementById("neckline").value;
+            let sleeve = document.getElementById("sleeve").value;
             let platform = document.getElementById("platform").value;
             
             let result = "";
 
             if (platform === "shopify") {
-                result = `=== 📌 1. عنوان المنتج (Title) ===\n${type} ${audience} كاجوال من TREE - لون ${color}\n\n=== 📝 2. وصف المنتج (Description) ===\nارتقِ بمستوى أناقتك مع ${type} الـ ${audience} الجديد من كوليكشن TREE. صُمم خصيصاً ليمنحك إطلالة عصرية لا مثيل لها مع توفير أقصى درجات الراحة طوال اليوم.\n\n✨ أبرز الميزات:\n- 🧵 خامة ممتازة: مصنوع من ${material} عالي الجودة لضمان التهوية والمتانة.\n- 🎨 ألوان ثابتة: لون ${color} زاهي معالج ضد البهتان بعد الغسيل.\n- ✂️ قصة مثالية: تصميم (Regular Fit) يبرز أناقة الجسم ويتيح حرية الحركة.\n\n💡 نصيحة خبير TREE: نسق هذا الـ ${type} مع بنطلون كاجوال وسنيكرز لإطلالة يومية مريحة وخاطفة للأنظار.\n(برجاء مراجعة جدول المقاسات الخاص بنا قبل الطلب لضمان المقاس المثالي).\n\n=== 🔍 3. قسم محركات البحث (Search Engine Listing) ===\n\n🟢 عنوان الصفحة (SEO Title - Max 70 chars):\nتسوق ${type} ${audience} ${color} أونلاين | TREE Egypt\n\n🟢 الوصف التعريفي (Meta Description - Max 320 chars):\nاكتشف أحدث ${type} ${audience} من TREE بخامة ${material} عالية الجودة ولون ${color} مميز. تسوق الآن بأفضل الأسعار واستمتع بتجربة شراء آمنة مع إمكانية الاستبدال والاسترجاع.\n\n=== 🏷️ 4. العلامات (Tags) ===\n${type}, ${audience}, ${color}, ${material}, ملابس ${audience}, كوليكشن TREE, أزياء كاجوال, New Arrival`;
+                result = `${type} ${gender} من TREE | أناقة وراحة بلون ${color}\n\nارتقِ بإطلالتك مع ${type} الـ ${gender} المتميز من كوليكشن TREE الأصلي. مصمم خصيصاً ليمنحك الراحة طوال اليوم بفضل خامة الـ ${material} عالية الجودة.\n\n✨ الميزات التفصيلية:\n- خامة ناعمة ومريحة (${material}).\n- تصميم عملي بياقة ${neckline} وأكمام ${sleeve} لضمان حرية الحركة.\n- لون ${color} غني وثابت معالج ضد البهتان.\n- تلبيس مثالي (Regular Fit) يناسب جميع الأجسام.\n- متوفر بالمقاسات التالية: ${sizes}.\n\n📏 تنبيه: برجاء مراجعة جدول المقاسات قبل الطلب لضمان المقاس المثالي.`;
             } 
             else if (platform === "jumia") {
-                result = `العنوان: TREE ${type} ${audience} كاجوال - ${material} - ${color}\n\nأبرز الميزات (Highlights):\n- العلامة التجارية: TREE\n- الفئة: ملابس ${audience}\n- الخامة: ${material} عالي الجودة\n- اللون: ${color} ثابت لا يبهت\n- التلبيس: مريح وعملي (Regular Fit)\n\nوصف المنتج (Description):\nجدد خزانة ملابسك مع ${type} الأنيق من TREE. مصنوع بعناية من ${material} ليناسب الاستخدام اليومي المكثف. متوفر بلون ${color} الجذاب الذي يسهل تنسيقه مع مختلف إطلالاتك.`;
+                result = `العنوان: TREE ${type} ${gender} - ياقة ${neckline} - ${material} - ${color}\n\nأبرز الميزات (Highlights):\n- العلامة التجارية: TREE\n- الفئة المستهدفة: ${gender}\n- الخامة: ${material} (أكمام ${sleeve})\n- اللون: ${color}\n- المقاسات المتاحة: ${sizes}\n\nوصف المنتج (Description):\nاحصل على أفضل تجربة تسوق مع ${type} من TREE. منتج مصمم بعناية بياقة ${neckline} وأكمام ${sleeve} ليناسب الاستخدام اليومي. مصنوع من ${material} ومتوفر بلون ${color} الجذاب.`;
             } 
             else if (platform === "noon") {
-                result = `العنوان: ${type} كاجوال بأسلوب عصري ${audience} - ${color}\n\nنظرة عامة:\n- تصميم مخصص للـ (${audience}) من ${material} ليوفر أقصى درجات الراحة.\n- تصميم كلاسيكي عصري يناسب أوقات العمل والخروجات اليومية.\n- لون ${color} أنيق وسهل التنسيق مع قطعك المفضلة.\n- منتج أصلي 100% من مصانع TREE يضمن لك أعلى جودة وأطول عمر افتراضي.`;
+                result = `العنوان: ${type} ${gender} بأكمام ${sleeve} ولون ${color}\n\nنظرة عامة:\n- مصمم من ${material} ليوفر أقصى درجات الراحة وحرية الحركة.\n- يتميز بياقة ${neckline} وتصميم يناسب أوقات العمل والخروجات اليومية.\n- لون ${color} أنيق يسهل تنسيقه مع مختلف الإطلالات.\n- متوفر بمجموعة مقاسات تناسب الجميع: (${sizes}).\n- منتج أصلي 100% من مصانع TREE.`;
             }
 
             document.getElementById("outputText").value = result;
@@ -197,8 +190,8 @@
             text.select();
             text.setSelectionRange(0, 99999);
             navigator.clipboard.writeText(text.value);
-            alert("✅ تم نسخ المحتوى بنجاح! روح على لوحة التحكم واعمل لصق.");
+            alert("✅ تم نسخ المحتوى بنجاح! تقدر تعمله لصق في الموقع دلوقتي.");
         }
     </script>
 </body>
-</html>
+</html> 
