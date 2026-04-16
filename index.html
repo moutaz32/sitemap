@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TREE WhatsApp Assistant</title>
+    <title>TREE WhatsApp Master V2</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f0f4f8;
+            background-color: #f4f7f6;
             color: #333;
             margin: 0;
             padding: 20px;
@@ -19,18 +19,18 @@
             width: 100%;
             max-width: 600px;
             padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-            border-top: 5px solid #27ae60;
+            border-radius: 15px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+            border-top: 6px solid #1b5e20;
         }
         h2 {
             text-align: center;
-            color: #27ae60;
+            color: #1b5e20;
             margin-bottom: 5px;
         }
         p.subtitle {
             text-align: center;
-            color: #7f8c8d;
+            color: #666;
             margin-bottom: 25px;
             font-size: 14px;
         }
@@ -39,7 +39,7 @@
         }
         label {
             display: block;
-            margin-bottom: 5px;
+            margin-bottom: 6px;
             font-weight: bold;
             color: #2c3e50;
         }
@@ -53,12 +53,13 @@
             transition: 0.3s;
         }
         input:focus, select:focus {
-            border-color: #27ae60;
+            border-color: #1b5e20;
             outline: none;
+            box-shadow: 0 0 5px rgba(27, 94, 32, 0.2);
         }
         .row {
             display: flex;
-            gap: 10px;
+            gap: 15px;
         }
         .row .form-group {
             flex: 1;
@@ -66,40 +67,40 @@
         button.generate-btn {
             width: 100%;
             padding: 14px;
-            background-color: #27ae60;
+            background-color: #1b5e20;
             color: white;
             border: none;
             border-radius: 8px;
             font-size: 16px;
             cursor: pointer;
             font-weight: bold;
-            margin-top: 15px;
+            margin-top: 10px;
             transition: 0.3s;
         }
         button.generate-btn:hover {
-            background-color: #219653;
+            background-color: #123e15;
         }
         .result-box {
             margin-top: 25px;
             display: none;
-            animation: fadeIn 0.5s;
+            animation: slideUp 0.4s ease-out;
         }
         textarea {
             width: 100%;
-            height: 250px;
+            height: 280px;
             padding: 15px;
-            border: 2px solid #27ae60;
+            border: 2px solid #1b5e20;
             border-radius: 8px;
             font-size: 15px;
             line-height: 1.6;
             resize: none;
             box-sizing: border-box;
-            background-color: #f9fbf9;
+            background-color: #fcfdfc;
         }
         button.copy-btn {
             width: 100%;
             padding: 12px;
-            background-color: #2980b9;
+            background-color: #0277bd;
             color: white;
             border: none;
             border-radius: 8px;
@@ -109,11 +110,8 @@
             margin-top: 10px;
             transition: 0.3s;
         }
-        button.copy-btn:hover {
-            background-color: #2471a3;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-10px); }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
     </style>
@@ -121,77 +119,78 @@
 <body>
 
     <div class="container">
-        <h2>🌳 مساعد TREE لخدمة العملاء</h2>
-        <p class="subtitle">أداة توليد رسائل الواتساب السريعة</p>
+        <h2>🌳 ماكينة رسائل TREE (الإصدار الجديد)</h2>
+        <p class="subtitle">نظام التأكيد المشروط والاستبدال الشامل</p>
         
         <div class="row">
             <div class="form-group">
-                <label for="customerName">اسم العميل (اختياري)</label>
-                <input type="text" id="customerName" placeholder="مثال: أحمد...">
+                <label for="customerName">اسم العميل</label>
+                <input type="text" id="customerName" placeholder="مثال: أ/ محمد">
             </div>
             <div class="form-group">
-                <label for="orderNumber">رقم الأوردر (اختياري)</label>
-                <input type="text" id="orderNumber" placeholder="مثال: 1054...">
+                <label for="orderNumber">رقم الأوردر</label>
+                <input type="text" id="orderNumber" placeholder="رقم الطلب من الموقع">
             </div>
         </div>
 
         <div class="row">
             <div class="form-group">
-                <label for="totalAmount">المبلغ المطلوب (للتأكيد)</label>
-                <input type="number" id="totalAmount" placeholder="مثال: 850">
+                <label for="totalAmount">المبلغ المطلوب (ج.م)</label>
+                <input type="number" id="totalAmount" placeholder="الإجمالي شامل الشحن">
             </div>
             <div class="form-group">
-                <label for="scenario">نوع الرسالة</label>
+                <label for="scenario">نوع الموقف</label>
                 <select id="scenario">
-                    <option value="conf1">تأكيد 1 (طلب التأكيد)</option>
-                    <option value="conf2">تأكيد 2 (الشحن وعدم المعاينة)</option>
-                    <option value="exchange">استبدال واسترجاع (شامل)</option>
-                    <option value="followup">متابعة العميل (لا يرد)</option>
+                    <option value="conf1">تأكيد 1 (طلب التأكيد الأول)</option>
+                    <option value="conf2">تأكيد 2 (شرط الموافقة وعدم المعاينة)</option>
+                    <option value="exchange">استبدال (فرع + موقع جديد)</option>
+                    <option value="reminder">تذكير (العميل لا يرد)</option>
                 </select>
             </div>
         </div>
 
-        <button class="generate-btn" onclick="generateMessage()">⚙️ إنشاء الرسالة</button>
+        <button class="generate-btn" onclick="generateMessage()">⚙️ إنشاء الرسالة فوراً</button>
 
         <div class="result-box" id="resultBox">
+            <label>الرسالة جاهزة للنسخ:</label>
             <textarea id="outputText" readonly></textarea>
-            <button class="copy-btn" id="copyBtn" onclick="copyText()">📋 نسخ الرسالة للواتساب</button>
+            <button class="copy-btn" id="copyBtn" onclick="copyText()">📋 نسخ للواتساب</button>
         </div>
     </div>
 
     <script>
         function generateMessage() {
-            let nameInput = document.getElementById("customerName").value.trim();
-            let name = nameInput !== "" ? nameInput : "يا فندم";
+            let nameIn = document.getElementById("customerName").value.trim();
+            let name = nameIn !== "" ? nameIn : "يا فندم";
             let order = document.getElementById("orderNumber").value.trim();
             let amount = document.getElementById("totalAmount").value.trim();
             let scenario = document.getElementById("scenario").value;
             
-            let orderText = order !== "" ? ` رقم #${order}` : "";
-            let amountText = amount !== "" ? amount : "[المبلغ]";
+            let orderHash = order !== "" ? ` رقم #${order}` : "";
+            let amountVal = amount !== "" ? amount : "[المبلغ]";
             
             let result = "";
 
             if (scenario === "conf1") {
-                result = `أهلاً بك ${name} في TREE! 🌳\nسعداء باختيارك لينا.. طلبك${orderText} وصلنا وبنراجعه حالياً عشان نبدأ التجهيز.\n\nعشان نأكد الأوردر وتخرج الشحنة لشركة الشحن في أسرع وقت، برجاء الرد بكلمة "تأكيد".\n\n(ولو حابب تعدل المقاس أو تضيف أي حاجة للأوردر إحنا موجودين للمساعدة).`;
+                result = `أهلاً بك ${name} في TREE! 🌳\nسعداء باختيارك لينا.. طلبك${orderHash} وصلنا وبنراجعه حالياً عشان نبدأ التجهيز.\n\nعشان نأكد الأوردر وتخرج الشحنة لشركة الشحن في أسرع وقت، برجاء الرد بكلمة "تأكيد".\n\n(ولو حابب تعدل المقاس أو تضيف أي حاجة للأوردر إحنا موجودين للمساعدة).`;
             } 
             else if (scenario === "conf2") {
-                result = `تم التأكيد بنجاح ${name}! 🥳 طلبك${orderText} دلوقتي قيد التجهيز.\n\n🚚 موعد التسليم: الشحنة هتوصلك خلال (2 إلى 4 أيام عمل)، ومندوب الشحن هيتواصل معك قبل التسليم.\n\n📌 تنبيه هام للاستلام:\nلضمان وصول المنتج بحالته الأصلية وبأعلى جودة، (غير متاح فتح الشحنة أو المعاينة مع المندوب وقت الاستلام) طبقاً لسياسة التعاقد مع شركة الشحن.\n\n💡 بس حقك محفوظ 100%:\nلو في أي مشكلة، الاستبدال والاسترجاع متاح بكل سهولة خلال 14 يوم من خلال:\n1️⃣ تشرفنا في أقرب فرع ليك وتبدل أو ترجع مجاناً.\n2️⃣ أو نبعتلك المندوب مرة تانية لحد باب البيت (بإضافة مصاريف شحن جديدة).\n\n💰 الإجمالي المطلوب عند الاستلام: ${amountText} جنيه.\n\nنتمنى لك تجربة تسوق مميزة مع كوليكشن TREE! ✨`;
+                result = `تم التأكيد بنجاح ${name}! 🥳 طلبك${orderHash} دلوقتي قيد التجهيز.\n\n🚚 موعد التسليم: الشحنة هتوصلك خلال (2 إلى 4 أيام عمل)، ومندوب الشحن هيتواصل معك قبل التسليم.\n\n📌 تنبيه هام للاستلام:\nلضمان وصول المنتج بحالته الأصلية وبأعلى جودة، (غير متاح فتح الشحنة أو المعاينة مع المندوب وقت الاستلام) طبقاً لسياسة الشحن.\n\n💡 بس حقك محفوظ 100%:\nلو في أي مشكلة، الاستبدال والاسترجاع متاح بكل سهولة خلال 14 يوم من الفروع مجاناً أو بطلب مندوب آخر.\n\n💰 الإجمالي عند الاستلام: ${amountVal} جنيه.\n\n⚠️ عشان نخرج الشحنة للمندوب، استأذنك تأكدلي بكلمة "موافق" على سياسة الاستلام.`;
             } 
             else if (scenario === "exchange") {
-                result = `أهلاً بك ${name} في TREE! 🌳\nولا يهمك خالص، حقك محفوظ 100% في الاستبدال أو الاسترجاع خلال 14 يوم من الاستلام.\n\n🔄 متاح لحضرتك الاستبدال بطريقتين:\n\n1️⃣ عن طريق الفروع (مجاناً):\nتشرفنا في أقرب فرع ليك من فروعنا الـ 34 وتبدل أو ترجع القطعة مجاناً بدون أي مصاريف إضافية.\n\n2️⃣ عن طريق الموقع (شحن للمنزل):\nلو حابب المندوب يجيلك لحد البيت، الخطوات بسيطة:\n- ادخل على الموقع واعمل (أوردر جديد) بالمقاس أو المنتج اللي محتاجه.\n- ابعتلنا هنا في رسالة (رقم الأوردر الجديد).\n\nالمندوب هيجيلك يسلمك الجديد ويستلم القديم في نفس الوقت (يتم فقط إضافة مصاريف شحن لعملية الاستبدال).\n\nتحب حضرتك تشرفنا في الفرع ولا نبعتلك المندوب؟ ✨`;
+                result = `أهلاً بك ${name} في TREE! 🌳\nولا يهمك خالص، حقك محفوظ 100% في الاستبدال أو الاسترجاع خلال 14 يوم من الاستلام.\n\n🔄 متاح لحضرتك الاستبدال بطريقتين:\n\n1️⃣ عن طريق الفروع (مجاناً):\nتشرفنا في أقرب فرع ليك من فروعنا الـ 34 وتبدل أو ترجع القطعة مجاناً بدون أي مصاريف إضافية.\n\n2️⃣ عن طريق الموقع (شحن للمنزل):\nلو حابب المندوب يجيلك لحد البيت، الخطوات بسيطة:\n- ادخل على الموقع واعمل (أوردر جديد) بالمقاس المطلوب.\n- ابعتلنا هنا في رسالة (رقم الأوردر الجديد).\n\nالمندوب هيجيلك يسلمك الجديد ويستلم القديم في نفس الوقت (يتم إضافة مصاريف شحن للاستبدال).\n\nتحب حضرتك تشرفنا في الفرع ولا نبعتلك المندوب؟ ✨`;
             }
-            else if (scenario === "followup") {
+            else if (scenario === "reminder") {
                 result = `مساء الخير ${name}،\nحاولنا نتواصل مع حضرتك لتأكيد طلبك من TREE ومفيش رد.\n\nالأوردر جاهز ومستنيين تأكيدك عشان نخرجه لشركة الشحن في أقرب وقت.\nنأكد لحضرتك الشحن ولا نلغي الطلب مؤقتاً؟`;
             }
 
             document.getElementById("outputText").value = result;
             document.getElementById("resultBox").style.display = "block";
             
-            // Reset button text
+            // Reset button
             let btn = document.getElementById("copyBtn");
-            btn.innerHTML = "📋 نسخ الرسالة للواتساب";
-            btn.style.backgroundColor = "#2980b9";
+            btn.innerHTML = "📋 نسخ للواتساب";
+            btn.style.backgroundColor = "#0277bd";
         }
 
         function copyText() {
@@ -202,13 +201,13 @@
             
             let btn = document.getElementById("copyBtn");
             btn.innerHTML = "✅ تم النسخ بنجاح!";
-            btn.style.backgroundColor = "#27ae60";
+            btn.style.backgroundColor = "#2e7d32";
             
             setTimeout(() => {
-                btn.innerHTML = "📋 نسخ الرسالة للواتساب";
-                btn.style.backgroundColor = "#2980b9";
+                btn.innerHTML = "📋 نسخ للواتساب";
+                btn.style.backgroundColor = "#0277bd";
             }, 2000);
         }
     </script>
 </body>
-</html>
+</html> 
