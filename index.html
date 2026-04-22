@@ -2,212 +2,148 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TREE WhatsApp Master V2</title>
+    <title>محاكي أرباح CRM - براند TREE</title>
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f4f7f6;
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background: #f4f7f6; 
+            padding: 20px; 
             color: #333;
-            margin: 0;
-            padding: 20px;
-            display: flex;
-            justify-content: center;
         }
-        .container {
-            background-color: #fff;
-            width: 100%;
-            max-width: 600px;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
-            border-top: 6px solid #1b5e20;
+        .container { 
+            max-width: 600px; 
+            margin: auto; 
+            background: white; 
+            padding: 30px; 
+            border-radius: 12px; 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1); 
+            border-top: 6px solid #2d5a27; 
         }
-        h2 {
-            text-align: center;
-            color: #1b5e20;
-            margin-bottom: 5px;
-        }
-        p.subtitle {
-            text-align: center;
-            color: #666;
+        h2 { 
+            color: #2d5a27; 
+            text-align: center; 
             margin-bottom: 25px;
-            font-size: 14px;
         }
-        .form-group {
-            margin-bottom: 15px;
+        .form-group { 
+            margin-bottom: 15px; 
         }
-        label {
-            display: block;
-            margin-bottom: 6px;
-            font-weight: bold;
-            color: #2c3e50;
+        label { 
+            display: block; 
+            font-weight: bold; 
+            margin-bottom: 8px; 
+            color: #555;
         }
-        input, select {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-size: 15px;
-            box-sizing: border-box;
-            transition: 0.3s;
+        input, select { 
+            width: 100%; 
+            padding: 12px; 
+            border: 1px solid #ccc; 
+            border-radius: 6px; 
+            box-sizing: border-box; 
+            font-size: 16px; 
         }
         input:focus, select:focus {
-            border-color: #1b5e20;
             outline: none;
-            box-shadow: 0 0 5px rgba(27, 94, 32, 0.2);
+            border-color: #2d5a27;
         }
-        .row {
-            display: flex;
-            gap: 15px;
+        .result-box { 
+            background: #e8f5e9; 
+            padding: 20px; 
+            border-radius: 8px; 
+            margin-top: 25px; 
+            border: 1px solid #c8e6c9; 
         }
-        .row .form-group {
-            flex: 1;
+        .result-item { 
+            font-size: 18px; 
+            margin-bottom: 12px; 
+            display: flex; 
+            justify-content: space-between; 
+            border-bottom: 1px dashed #a5d6a7; 
+            padding-bottom: 8px; 
         }
-        button.generate-btn {
-            width: 100%;
-            padding: 14px;
-            background-color: #1b5e20;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 16px;
-            cursor: pointer;
-            font-weight: bold;
-            margin-top: 10px;
-            transition: 0.3s;
+        .total { 
+            font-size: 24px; 
+            font-weight: bold; 
+            color: #2d5a27; 
+            border-bottom: none; 
+            margin-top: 20px; 
+            padding-bottom: 0;
         }
-        button.generate-btn:hover {
-            background-color: #123e15;
-        }
-        .result-box {
-            margin-top: 25px;
-            display: none;
-            animation: slideUp 0.4s ease-out;
-        }
-        textarea {
-            width: 100%;
-            height: 280px;
-            padding: 15px;
-            border: 2px solid #1b5e20;
-            border-radius: 8px;
-            font-size: 15px;
-            line-height: 1.6;
-            resize: none;
-            box-sizing: border-box;
-            background-color: #fcfdfc;
-        }
-        button.copy-btn {
-            width: 100%;
-            padding: 12px;
-            background-color: #0277bd;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 15px;
-            cursor: pointer;
-            font-weight: bold;
-            margin-top: 10px;
-            transition: 0.3s;
-        }
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        .note {
+            font-size: 13px;
+            color: #777;
+            text-align: center;
+            margin-top: 15px;
         }
     </style>
 </head>
 <body>
-
     <div class="container">
-        <h2>🌳 ماكينة رسائل TREE (الإصدار الجديد)</h2>
-        <p class="subtitle">نظام التأكيد المشروط والاستبدال الشامل</p>
+        <h2>📊 محاكي أرباح الـ CRM (براند TREE)</h2>
         
-        <div class="row">
-            <div class="form-group">
-                <label for="customerName">اسم العميل</label>
-                <input type="text" id="customerName" placeholder="مثال: أ/ محمد">
-            </div>
-            <div class="form-group">
-                <label for="orderNumber">رقم الأوردر</label>
-                <input type="text" id="orderNumber" placeholder="رقم الطلب من الموقع">
-            </div>
+        <div class="form-group">
+            <label>💬 عدد الاستفسارات الشهرية (رسائل السوشيال ميديا):</label>
+            <input type="number" id="inquiries" value="1000" oninput="calculate()">
+        </div>
+        
+        <div class="form-group">
+            <label>⏱️ متوسط سرعة الرد على العميل:</label>
+            <select id="responseTime" onchange="calculate()">
+                <option value="0.05">الوضع القديم: الرد متأخر جداً (نسبة التحويل 5%)</option>
+                <option value="0.10">الوضع المتوسط: الرد خلال ساعة (نسبة التحويل 10%)</option>
+                <option value="0.15" selected>وضع الـ CRM: الرد فوراً/خلال 10 دقائق (نسبة التحويل 15%)</option>
+            </select>
         </div>
 
-        <div class="row">
-            <div class="form-group">
-                <label for="totalAmount">المبلغ المطلوب (ج.م)</label>
-                <input type="number" id="totalAmount" placeholder="الإجمالي شامل الشحن">
-            </div>
-            <div class="form-group">
-                <label for="scenario">نوع الموقف</label>
-                <select id="scenario">
-                    <option value="conf1">تأكيد 1 (طلب التأكيد الأول)</option>
-                    <option value="conf2">تأكيد 2 (شرط الموافقة وعدم المعاينة)</option>
-                    <option value="exchange">استبدال (فرع + موقع جديد)</option>
-                    <option value="reminder">تذكير (العميل لا يرد)</option>
-                </select>
-            </div>
+        <div class="form-group">
+            <label>🤝 معدل الاحتفاظ بالعملاء (% اللي هيرجعوا يشتروا تاني):</label>
+            <input type="number" id="retention" value="20" oninput="calculate()">
         </div>
 
-        <button class="generate-btn" onclick="generateMessage()">⚙️ إنشاء الرسالة فوراً</button>
-
-        <div class="result-box" id="resultBox">
-            <label>الرسالة جاهزة للنسخ:</label>
-            <textarea id="outputText" readonly></textarea>
-            <button class="copy-btn" id="copyBtn" onclick="copyText()">📋 نسخ للواتساب</button>
+        <div class="form-group">
+            <label>💰 متوسط قيمة الطلب للعميل (AOV بالجنيه):</label>
+            <input type="number" id="aov" value="850" oninput="calculate()">
         </div>
+
+        <div class="result-box">
+            <div class="result-item"><span>إجمالي الطلبات الجديدة:</span> <strong id="resNewOrders">0</strong></div>
+            <div class="result-item"><span>إيرادات العملاء الجدد:</span> <strong id="resNewRev">0 ج.م</strong></div>
+            <div class="result-item" style="color: #d84315;"><span>طلبات تكرار الشراء (بفضل الـ CRM):</span> <strong id="resRepeatOrders">0</strong></div>
+            <div class="result-item" style="color: #d84315;"><span>إيرادات الولاء (صافي بدون إعلانات):</span> <strong id="resRepeatRev">0 ج.م</strong></div>
+            <div class="result-item total"><span>إجمالي الإيرادات المتوقعة:</span> <strong id="resTotalRev">0 ج.م</strong></div>
+        </div>
+        
+        <div class="note">كلما زادت سرعة الرد ومعدل الاحتفاظ، تضاعفت الإيرادات بدون زيادة ميزانية الإعلانات.</div>
     </div>
 
     <script>
-        function generateMessage() {
-            let nameIn = document.getElementById("customerName").value.trim();
-            let name = nameIn !== "" ? nameIn : "يا فندم";
-            let order = document.getElementById("orderNumber").value.trim();
-            let amount = document.getElementById("totalAmount").value.trim();
-            let scenario = document.getElementById("scenario").value;
-            
-            let orderHash = order !== "" ? ` رقم #${order}` : "";
-            let amountVal = amount !== "" ? amount : "[المبلغ]";
-            
-            let result = "";
+        function calculate() {
+            // جلب الأرقام من الخانات
+            let inquiries = parseFloat(document.getElementById('inquiries').value) || 0;
+            let convRate = parseFloat(document.getElementById('responseTime').value);
+            let retention = parseFloat(document.getElementById('retention').value) || 0;
+            let aov = parseFloat(document.getElementById('aov').value) || 0;
 
-            if (scenario === "conf1") {
-                result = `أهلاً بك ${name} في TREE! 🌳\nسعداء باختيارك لينا.. طلبك${orderHash} وصلنا وبنراجعه حالياً عشان نبدأ التجهيز.\n\nعشان نأكد الأوردر وتخرج الشحنة لشركة الشحن في أسرع وقت، برجاء الرد بكلمة "تأكيد".\n\n(ولو حابب تعدل المقاس أو تضيف أي حاجة للأوردر إحنا موجودين للمساعدة).`;
-            } 
-            else if (scenario === "conf2") {
-                result = `تم التأكيد بنجاح ${name}! 🥳 طلبك${orderHash} دلوقتي قيد التجهيز.\n\n🚚 موعد التسليم: الشحنة هتوصلك خلال (2 إلى 4 أيام عمل)، ومندوب الشحن هيتواصل معك قبل التسليم.\n\n📌 تنبيه هام للاستلام:\nلضمان وصول المنتج بحالته الأصلية وبأعلى جودة، (غير متاح فتح الشحنة أو المعاينة مع المندوب وقت الاستلام) طبقاً لسياسة الشحن.\n\n💡 بس حقك محفوظ 100%:\nلو في أي مشكلة، الاستبدال والاسترجاع متاح بكل سهولة خلال 14 يوم من الفروع مجاناً أو بطلب مندوب آخر.\n\n💰 الإجمالي عند الاستلام: ${amountVal} جنيه.\n\n⚠️ عشان نخرج الشحنة للمندوب، استأذنك تأكدلي بكلمة "موافق" على سياسة الاستلام.`;
-            } 
-            else if (scenario === "exchange") {
-                result = `أهلاً بك ${name} في TREE! 🌳\nولا يهمك خالص، حقك محفوظ 100% في الاستبدال أو الاسترجاع خلال 14 يوم من الاستلام.\n\n🔄 متاح لحضرتك الاستبدال بطريقتين:\n\n1️⃣ عن طريق الفروع (مجاناً):\nتشرفنا في أقرب فرع ليك من فروعنا الـ 34 وتبدل أو ترجع القطعة مجاناً بدون أي مصاريف إضافية.\n\n2️⃣ عن طريق الموقع (شحن للمنزل):\nلو حابب المندوب يجيلك لحد البيت، الخطوات بسيطة:\n- ادخل على الموقع واعمل (أوردر جديد) بالمقاس المطلوب.\n- ابعتلنا هنا في رسالة (رقم الأوردر الجديد).\n\nالمندوب هيجيلك يسلمك الجديد ويستلم القديم في نفس الوقت (يتم إضافة مصاريف شحن للاستبدال).\n\nتحب حضرتك تشرفنا في الفرع ولا نبعتلك المندوب؟ ✨`;
-            }
-            else if (scenario === "reminder") {
-                result = `مساء الخير ${name}،\nحاولنا نتواصل مع حضرتك لتأكيد طلبك من TREE ومفيش رد.\n\nالأوردر جاهز ومستنيين تأكيدك عشان نخرجه لشركة الشحن في أقرب وقت.\nنأكد لحضرتك الشحن ولا نلغي الطلب مؤقتاً؟`;
-            }
-
-            document.getElementById("outputText").value = result;
-            document.getElementById("resultBox").style.display = "block";
+            // حساب المبيعات الجديدة
+            let newOrders = Math.round(inquiries * convRate);
+            let newRev = newOrders * aov;
             
-            // Reset button
-            let btn = document.getElementById("copyBtn");
-            btn.innerHTML = "📋 نسخ للواتساب";
-            btn.style.backgroundColor = "#0277bd";
+            // حساب المبيعات المكررة (الولاء)
+            let repeatOrders = Math.round(newOrders * (retention / 100));
+            let repeatRev = repeatOrders * aov;
+            
+            // الإجمالي
+            let totalRev = newRev + repeatRev;
+
+            // عرض النتائج في الشاشة وتنسيق الأرقام
+            document.getElementById('resNewOrders').innerText = newOrders;
+            document.getElementById('resNewRev').innerText = newRev.toLocaleString() + ' ج.م';
+            document.getElementById('resRepeatOrders').innerText = repeatOrders;
+            document.getElementById('resRepeatRev').innerText = repeatRev.toLocaleString() + ' ج.م';
+            document.getElementById('resTotalRev').innerText = totalRev.toLocaleString() + ' ج.م';
         }
-
-        function copyText() {
-            let text = document.getElementById("outputText");
-            text.select();
-            text.setSelectionRange(0, 99999);
-            navigator.clipboard.writeText(text.value);
-            
-            let btn = document.getElementById("copyBtn");
-            btn.innerHTML = "✅ تم النسخ بنجاح!";
-            btn.style.backgroundColor = "#2e7d32";
-            
-            setTimeout(() => {
-                btn.innerHTML = "📋 نسخ للواتساب";
-                btn.style.backgroundColor = "#0277bd";
-            }, 2000);
-        }
+        
+        // تشغيل الحسبة أول ما الصفحة تفتح
+        calculate();
     </script>
 </body>
 </html> 
